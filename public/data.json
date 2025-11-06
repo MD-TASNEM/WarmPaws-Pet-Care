@@ -1,0 +1,151 @@
+[
+  {
+    "serviceId": 1,
+    "serviceName": "Winter Coat Fitting for Cats",
+    "providerName": "PawCare Studio",
+    "providerEmail": "info@pawcare.com",
+    "price": 25,
+    "rating": 4.9,
+    "slotsAvailable": 4,
+    "description": "Custom coat fitting and warm outfit options to keep your cat comfortable in the cold.",
+    
+    "image":"https://i.ibb.co.com/mr2MCx3W/Up-1.jpg",
+    
+    "category": "Clothing"
+  },
+  {
+    "serviceId": 2,
+    "serviceName": "Winter Grooming & Paw Treatment for Cats",
+    "providerName": "CozyPets Grooming",
+    "providerEmail": "hello@cozypets.com",
+    "price": 30,
+    "rating": 4.8,
+    "slotsAvailable": 3,
+    "description": "Professional grooming with moisturizing paw balm and winter-safe shampoo for cats.",
+    "image": "https://i.ibb.co/WWprxR1c/two.webp",
+    "category": "Grooming"
+  },
+  {
+    "serviceId": 3,
+    "serviceName": "Heated Cat Bed Setup",
+    "providerName": "WarmTails Comfort",
+    "providerEmail": "support@warmtails.com",
+    "price": 40,
+    "rating": 4.7,
+    "slotsAvailable": 5,
+    "description": "Installation of cozy heated beds to keep your cats warm during winter nights.",
+    "image": "https://i.ibb.co/kVCYJ9k2/three.jpg",
+    "category": "Comfort"
+  },
+  {
+    "serviceId": 4,
+    "serviceName": "Nutritional Winter Diet Plan for Cats",
+    "providerName": "PetWell Nutritionists",
+    "providerEmail": "care@petwell.com",
+    "price": 20,
+    "rating": 4.6,
+    "slotsAvailable": 6,
+    "description": "Personalized diet plans rich in calories and nutrients to support cats during cold months.",
+    "image": "https://i.ibb.co/KxDS4QZn/four.webp",
+    "category": "Nutrition"
+  },
+  {
+    "serviceId": 5,
+    "serviceName": "Indoor Winter Play & Exercise for Cats",
+    "providerName": "FrostyPaws Playcare",
+    "providerEmail": "booking@frostypaws.com",
+    "price": 35,
+    "rating": 4.9,
+    "slotsAvailable": 2,
+    "description": "Safe indoor play and exercise sessions to keep your cats active during chilly days.",
+    "image": "https://i.ibb.co/84jVcXGR/pets-beautiful-bengal-cat-actively-600nw-2361392023.webp",
+  
+    "category": "Recreation"
+  },
+  {
+    "serviceId": 6,
+    "serviceName": "Home Heating Check for Cats",
+    "providerName": "PetWarm Solutions",
+    "providerEmail": "help@petwarm.com",
+    "price": 45,
+    "rating": 4.8,
+    "slotsAvailable": 3,
+    "description": "Inspection and setup of safe heating arrangements in cat areas to ensure a warm environment.",
+    "image": "https://i.ibb.co/GvGK2pL6/safety.webp",
+    "category": "Safety"
+  },
+  {
+    "serviceId": 7,
+    "serviceName": "Winter Cat Spa & Massage",
+    "providerName": "SnowyTails Spa",
+    "providerEmail": "relax@snowytails.com",
+    "price": 50,
+    "rating": 5.0,
+    "slotsAvailable": 4,
+    "description": "Warm massage and spa session designed to relieve muscle stiffness caused by cold weather in cats.",
+    "image": "https://i.ibb.co/7xWZxzpc/cat-spa-ai-generated-image-382663931.webp",
+    "category": "Wellness"
+  },
+  {
+    "serviceId": 8,
+    "serviceName": "Winter Vaccination & Health Check for Cats",
+    "providerName": "VetCare Clinic",
+    "providerEmail": "contact@vetcareclinic.com",
+    "price": 55,
+    "rating": 4.8,
+    "slotsAvailable": 6,
+    "description": "Comprehensive health check and vaccination updates to protect cats from winter infections.",
+    "image": "https://i.ibb.co/m5G5pqX7/5418bd-957e9aa736fc460d932e2b695d82582b-mv2.jpg",
+    "category": "Health"
+  },
+  {
+    "serviceId": 9,
+    "serviceName": "Cat Jacket Custom Embroidery",
+    "providerName": "TailorPaws Designs",
+    "providerEmail": "style@tailorpaws.com",
+    "price": 28,
+    "rating": 4.7,
+    "slotsAvailable": 5,
+    "description": "Personalized embroidery service to add your cat’s name and style to their winter jacket.",
+    "image": "https://i.ibb.co/FL2FCFC2/images-2.jpg",
+    "category": "Fashion"
+  },
+  {
+    "serviceId": 10,
+    "serviceName": "Snow Adventure Safety Gear Rental for Cats",
+    "providerName": "AdventurePaws Rentals",
+    "providerEmail": "info@adventurepaws.com",
+    "price": 35,
+    "rating": 4.9,
+    "slotsAvailable": 3,
+    "description": "Rental service for cat snow jackets and safety gear for outdoor adventures.",
+    "image": "https://i.ibb.co/cK5wT6DS/images-1.jpg",
+    "category": "Adventure"
+  },
+  {
+    "serviceId": 11,
+    "serviceName": "Indoor Winter Play Setup for Cats",
+    "providerName": "HappyPaws Entertainment",
+    "providerEmail": "fun@happypaws.com",
+    "price": 22,
+    "rating": 4.5,
+    "slotsAvailable": 6,
+    "description": "Setup of indoor play zones to keep cats active and entertained during cold weather.",
+    "image": "https://i.ibb.co/0R8PrSx8/i-Stock-665322658-1100x.webp",
+    "category": "Recreation"
+  },
+  {
+    "serviceId": 12,
+    "serviceName": "Winter Shedding Control Session for Cats",
+    "providerName": "FurEase Groomers",
+    "providerEmail": "support@furease.com",
+    "price": 27,
+    "rating": 4.6,
+    "slotsAvailable": 5,
+    "description": "De-shedding treatment and coat conditioning to reduce winter hair fall and dryness in cats.",
+    "image": "https://i.ibb.co/20hcq1kx/cat-shedding.webp",
+    "category": "Grooming"
+  }
+]
+
+    
