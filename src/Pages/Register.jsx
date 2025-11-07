@@ -4,7 +4,8 @@ import { AuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { createUser, user, setUser, updateUser } = React.useContext(AuthContext);
+  const { createUser, user, setUser, updateUser } =
+    React.useContext(AuthContext);
   const [showPass, setShowPass] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(0);
@@ -13,7 +14,7 @@ const Register = () => {
     lastName: "",
     photo: "",
     email: "",
-    password: ""
+    password: "",
   });
 
   const navigate = useNavigate();
@@ -25,9 +26,9 @@ const Register = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
 
     // Check password strength when password changes
@@ -89,19 +90,23 @@ const Register = () => {
     try {
       const userCredential = await createUser(email, password);
       await updateUser({ displayName: fullName, photoURL: photo });
-      setUser({ ...userCredential.user, displayName: fullName, photoURL: photo });
+      setUser({
+        ...userCredential.user,
+        displayName: fullName,
+        photoURL: photo,
+      });
 
       toast.success("Account created successfully! Welcome to WarmPaws!", {
         duration: 5000,
-        position: 'top-right',
+        position: "top-right",
         style: {
-          background: '#10B981',
-          color: '#fff',
-          borderRadius: '12px',
-          fontSize: '14px',
-          fontWeight: '500',
+          background: "#10B981",
+          color: "#fff",
+          borderRadius: "12px",
+          fontSize: "14px",
+          fontWeight: "500",
         },
-        icon: '🎉',
+        icon: "🎉",
       });
 
       // Reset form
@@ -110,30 +115,32 @@ const Register = () => {
         lastName: "",
         photo: "",
         email: "",
-        password: ""
+        password: "",
       });
 
-      navigate('/');
+      navigate("/");
     } catch (err) {
       let errorMessage = "Registration failed. Please try again.";
 
-      if (err.code === 'auth/email-already-in-use') {
-        errorMessage = "This email is already registered. Please sign in instead.";
-      } else if (err.code === 'auth/invalid-email') {
+      if (err.code === "auth/email-already-in-use") {
+        errorMessage =
+          "This email is already registered. Please sign in instead.";
+      } else if (err.code === "auth/invalid-email") {
         errorMessage = "Please enter a valid email address.";
-      } else if (err.code === 'auth/weak-password') {
-        errorMessage = "Password is too weak. Please choose a stronger password.";
+      } else if (err.code === "auth/weak-password") {
+        errorMessage =
+          "Password is too weak. Please choose a stronger password.";
       }
 
       toast.error(errorMessage, {
         duration: 5000,
-        position: 'top-right',
+        position: "top-right",
         style: {
-          background: '#EF4444',
-          color: '#fff',
-          borderRadius: '12px',
-          fontSize: '14px',
-          fontWeight: '500',
+          background: "#EF4444",
+          color: "#fff",
+          borderRadius: "12px",
+          fontSize: "14px",
+          fontWeight: "500",
         },
       });
     } finally {
@@ -160,8 +167,12 @@ const Register = () => {
               <span>WarmPaws</span>
             </div>
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Create Account</h1>
-          <p className="text-gray-600">Join WarmPaws and give your pet the care they deserve</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Create Account
+          </h1>
+          <p className="text-gray-600">
+            Join WarmPaws and give your pet the care they deserve
+          </p>
         </div>
 
         {/* Registration Form */}
@@ -211,7 +222,9 @@ const Register = () => {
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
                 placeholder="https://example.com/photo.jpg"
               />
-              <p className="text-xs text-gray-500 mt-1">Optional - add a profile picture later</p>
+              <p className="text-xs text-gray-500 mt-1">
+                Optional - add a profile picture later
+              </p>
             </div>
 
             {/* Email */}
@@ -253,13 +266,38 @@ const Register = () => {
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors duration-200 p-1"
                 >
                   {showPass ? (
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                      />
                     </svg>
                   ) : (
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      />
                     </svg>
                   )}
                 </button>
@@ -270,16 +308,23 @@ const Register = () => {
                 <div className="mt-2">
                   <div className="flex justify-between text-xs text-gray-600 mb-1">
                     <span>Password strength</span>
-                    <span className={`font-medium ${
-                      passwordStrength <= 2 ? 'text-red-600' :
-                      passwordStrength <= 3 ? 'text-yellow-600' : 'text-green-600'
-                    }`}>
+                    <span
+                      className={`font-medium ${
+                        passwordStrength <= 2
+                          ? "text-red-600"
+                          : passwordStrength <= 3
+                          ? "text-yellow-600"
+                          : "text-green-600"
+                      }`}
+                    >
                       {getPasswordStrengthText(passwordStrength)}
                     </span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
                     <div
-                      className={`h-2 rounded-full transition-all duration-300 ${getPasswordStrengthColor(passwordStrength)}`}
+                      className={`h-2 rounded-full transition-all duration-300 ${getPasswordStrengthColor(
+                        passwordStrength
+                      )}`}
                       style={{ width: `${(passwordStrength / 5) * 100}%` }}
                     ></div>
                   </div>
@@ -288,23 +333,67 @@ const Register = () => {
 
               {/* Password Requirements */}
               <div className="mt-3 space-y-1">
-                <p className="text-xs text-gray-600 font-medium">Password must contain:</p>
+                <p className="text-xs text-gray-600 font-medium">
+                  Password must contain:
+                </p>
                 <ul className="text-xs text-gray-500 space-y-1">
-                  <li className={`flex items-center ${hasMinLength ? 'text-green-600' : ''}`}>
-                    <svg className={`w-3 h-3 mr-2 ${hasMinLength ? 'text-green-500' : 'text-gray-300'}`} fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  <li
+                    className={`flex items-center ${
+                      hasMinLength ? "text-green-600" : ""
+                    }`}
+                  >
+                    <svg
+                      className={`w-3 h-3 mr-2 ${
+                        hasMinLength ? "text-green-500" : "text-gray-300"
+                      }`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                     At least 6 characters
                   </li>
-                  <li className={`flex items-center ${hasUppercaseCheck ? 'text-green-600' : ''}`}>
-                    <svg className={`w-3 h-3 mr-2 ${hasUppercaseCheck ? 'text-green-500' : 'text-gray-300'}`} fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  <li
+                    className={`flex items-center ${
+                      hasUppercaseCheck ? "text-green-600" : ""
+                    }`}
+                  >
+                    <svg
+                      className={`w-3 h-3 mr-2 ${
+                        hasUppercaseCheck ? "text-green-500" : "text-gray-300"
+                      }`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                     One uppercase letter
                   </li>
-                  <li className={`flex items-center ${hasLowercaseCheck ? 'text-green-600' : ''}`}>
-                    <svg className={`w-3 h-3 mr-2 ${hasLowercaseCheck ? 'text-green-500' : 'text-gray-300'}`} fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  <li
+                    className={`flex items-center ${
+                      hasLowercaseCheck ? "text-green-600" : ""
+                    }`}
+                  >
+                    <svg
+                      className={`w-3 h-3 mr-2 ${
+                        hasLowercaseCheck ? "text-green-500" : "text-gray-300"
+                      }`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                     One lowercase letter
                   </li>
@@ -321,11 +410,17 @@ const Register = () => {
               />
               <label className="text-sm text-gray-600">
                 I agree to the{" "}
-                <a href="#" className="text-blue-600 hover:text-blue-700 font-medium">
+                <a
+                  href="#"
+                  className="text-blue-600 hover:text-blue-700 font-medium"
+                >
                   Terms of Service
                 </a>{" "}
                 and{" "}
-                <a href="#" className="text-blue-600 hover:text-blue-700 font-medium">
+                <a
+                  href="#"
+                  className="text-blue-600 hover:text-blue-700 font-medium"
+                >
                   Privacy Policy
                 </a>
               </label>
@@ -365,8 +460,18 @@ const Register = () => {
         {/* Security Note */}
         <div className="mt-6 text-center">
           <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+              />
             </svg>
             <span>Your data is securely encrypted and protected</span>
           </div>

@@ -4,27 +4,23 @@ import { AuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
 
 const ForgetPass = () => {
-  const {forgetpass}=use(AuthContext)
+  const { forgetpass } = use(AuthContext);
   const { state } = useLocation();
 
-  const {email} = state
- const handleForgetPass=(e)=>{
-  e.preventDefault();
-        forgetpass(email).
-        then(()=>{
-          toast.success('Send to Your Email');
-          window.open("https://mail.google.com", "_blank");
-         
-        }).catch(err=>{
-          toast.error(err.message);
-        })
+  const { email } = state;
+  const handleForgetPass = (e) => {
+    e.preventDefault();
+    forgetpass(email)
+      .then(() => {
+        toast.success("Send to Your Email");
+        window.open("https://mail.google.com", "_blank");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
 
-
-    }
-
-  
   return (
-   
     <div>
       <div className="flex flex-col justify-center items-center mt-2 sm:mt-4 mb-10">
         <div className="text-center">
@@ -47,20 +43,10 @@ const ForgetPass = () => {
                 placeholder="Your email"
               />
 
-              {/* Passwword Field */}
-              {/* <label className="label">Password:</label>
-              <div className="relative">
-                <input
-                  type="password"
-                  name='password'  required
-                  className="input sm:w-[400px] sm:h-[50px] border-2  border-gray-400 focus:outline-none"
-                  placeholder="Enter your password"
-                  
-                />
-                
-              </div> */}
-
-              <button onClick={handleForgetPass} className="btn btn-neutral mt-3 sm:w-[400px] border-none relative group">
+              <button
+                onClick={handleForgetPass}
+                className="btn btn-neutral mt-3 sm:w-[400px] border-none relative group"
+              >
                 <span className="relative z-10 transition-colors duration-300 group-hover:text-black">
                   Click here
                 </span>

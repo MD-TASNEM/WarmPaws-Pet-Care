@@ -1,131 +1,252 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { useParams } from "react-router";
 import toast from "react-hot-toast";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ServiceDetails = () => {
   const { serviceId } = useParams();
-  //console.log(serviceId)
-  const { data } = React.use(AuthContext);
-  //console.log( typeof data)
+  const { data } = useContext(AuthContext);
+
+  useEffect(() => {
+    AOS.init({ duration: 800, easing: "ease-out-cubic" });
+  }, []);
+
   const handleBook = (e) => {
     e.preventDefault();
-    toast.success("Successfully Registered");
+    toast.success("Booking Confirmed! 🐾", {
+      style: {
+        borderRadius: "10px",
+        background: "#1e1b4b",
+        color: "#fff",
+      },
+    });
     e.target.reset();
   };
 
-  if (!data) {
-    return <span className="loading loading-dots loading-xl"></span>;
-  }
+  if (!data)
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <span className="loading loading-dots loading-lg text-pink-500"></span>
+      </div>
+    );
 
   const service = data.find(
     (item) => Number(item.serviceId) === Number(serviceId)
   );
 
-  if (!service) return <p>Service not found!</p>;
+  if (!service)
+    return (
+      <div className="min-h-screen flex justify-center items-center bg-gray-50">
+        <p className="text-lg text-gray-600 font-medium">
+          Service not found 😿
+        </p>
+      </div>
+    );
 
   return (
-    <>
-      <div className="bg-[#e5e7eb] min-h-screen pb-10">
-        <h2
-          className="text-center font-bold text-gray-800 
-               text-xl sm:text-2xl md:text-3xl lg:text-4xl 
-               py-4 sm:py-5 md:py-6"
-        >
-          Explore Our Offerings
-        </h2>
-        <p
-          className="text-center text-gray-600 
-              text-sm sm:text-base md:text-lg 
-              max-w-2xl mx-auto w-10/12"
-        >
-          From Health to Fashion, Training to Recreation — Everything Your Cat
-          Needs!
-        </p>
+    <section className="bg-gray-50 min-h-screen">
+      {/* Hero Banner */}
+      <div className="relative bg-gradient-to-br from-purple-900 via-fuchsia-800 to-pink-700 py-28 text-center text-white overflow-hidden">
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="relative z-10 max-w-5xl mx-auto px-6">
+          <h1
+            className="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight leading-tight"
+            data-aos="fade-up"
+          >
+            {service.category}
+          </h1>
+          <p
+            className="text-lg md:text-xl text-pink-100 max-w-2xl mx-auto"
+            data-aos="fade-up"
+            data-aos-delay="150"
+          >
+            Premium feline care and luxury comfort — because your cat deserves
+            nothing less.
+          </p>
+        </div>
+      </div>
 
-        <div className="w-11/12 md:w-11/12 mx-auto flex flex-col justify-between items-center gap-5 py-10 ">
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden   transition-all duration-300 p-3 sm:p-5 md:p-7">
-            <img
-              src={service.image}
-              alt={service.category}
-              className="w-10/12 mx-auto rounded-2xl h-56 sm:h-72 md:h-80 object-cover "
-            />
+      {/* Main Content */}
+      <div className="max-w-6xl mx-auto px-6 -mt-20 relative z-10">
+        {/* Service Card */}
+        <div
+          className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <div className="grid md:grid-cols-2">
+            {/* Left: Image */}
+            <div className="relative overflow-hidden">
+              <img
+                src={service.image}
+                alt={service.category}
+                className="w-full h-80 md:h-full object-cover transform transition-transform duration-700 hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent"></div>
+            </div>
 
-            <div className="p-3 sm:p-5 w-10/12 mx-auto">
-              <h1 className="font-bold text-gray-800 mb-2 text-center sm:text-left">
+            {/* Right: Details */}
+            <div className="p-10 md:p-12 flex flex-col justify-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
                 {service.category}
-              </h1>
-
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
-                <p className="text-gray-600 text-sm sm:text-base">
-                  Rating:{" "}
-                  <span className="font-semibold">{service.rating}</span>
+              </h2>
+              <div className="flex items-center justify-between mb-5 text-gray-700">
+                <p>
+                  ⭐{" "}
+                  <span className="font-semibold text-gray-800">
+                    {service.rating}
+                  </span>
                 </p>
-                <p className="text-green-600 text-lg sm:text-xl font-semibold mt-1 sm:mt-0">
+                <p className="text-green-600 font-bold text-2xl">
                   ${service.price}
                 </p>
               </div>
-
-              <p className="text-gray-700 text-sm sm:text-base leading-relaxed text-justify">
+              <p className="text-gray-700 leading-relaxed mb-8">
                 {service.description}
               </p>
 
-              <div className="flex justify-center sm:justify-end mt-6">
-                <button className="btn btn-neutral px-6 py-2 rounded-md transition-all duration-300 hover:scale-105">
-                  Book Now
-                </button>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div className="flex flex-col justify-center items-center mt-10 pb-5 ">
-              <div className="text-center">
-                <h1 className="text-4xl my-2">Book Service</h1>
-                <h1>Please enter your Details:</h1>
-              </div>
-            </div>
-            <div className="w-11/12">
-              <form onSubmit={handleBook}>
-                <fieldset className="fieldset">
-                  <label className="label ">First Name:</label>
-                  <input
-                    type="text"
-                    name="text"
-                    required
-                    className="input sm:w-[400px] sm:h-[50px] border-2  border-gray-400 focus:outline-none"
-                    placeholder="Enter first name"
-                  />
-                  <label className="label ">Last Name:</label>
-                  <input
-                    type="text"
-                    name="text"
-                    required
-                    className="input sm:w-[400px] sm:h-[50px] border-2  border-gray-400 focus:outline-none"
-                    placeholder="Enter last name"
-                  />
-
-                  <label className="label">Email:</label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    className="input sm:w-[400px] sm:h-[50px] border-2 border-gray-400 focus:outline-none"
-                    placeholder="Enter email"
-                  />
-
-                  <button className="btn btn-neutral mt-3 sm:w-[400px] border-none relative group">
-                    <span className="relative z-10 transition-colors duration-300 group-hover:text-black">
-                      Book Now
-                    </span>
-                    <span className="absolute bg-white w-0 h-full right-0 transition-all duration-300 group-hover:w-full"></span>
-                  </button>
-                </fieldset>
-              </form>
+              <button
+                onClick={() =>
+                  toast("Booking started!", {
+                    icon: "🐱",
+                    style: {
+                      background: "#4c1d95",
+                      color: "#fff",
+                      borderRadius: "10px",
+                    },
+                  })
+                }
+                className="inline-block bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-lg hover:shadow-pink-500/40 transform hover:scale-105 transition-all duration-300"
+              >
+                Book Now
+              </button>
             </div>
           </div>
         </div>
+
+        {/* Booking Form */}
+        <div
+          className="mt-24 bg-white/80 backdrop-blur-xl border border-gray-200 shadow-2xl rounded-3xl p-10 md:p-14"
+          data-aos="fade-up"
+          data-aos-delay="500"
+        >
+          <div className="text-center mb-10">
+            <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3">
+              Reserve Your Spot
+            </h3>
+            <p className="text-gray-600 max-w-xl mx-auto">
+              Fill in your details below — we’ll confirm your service booking
+              right away.
+            </p>
+          </div>
+
+          <form
+            onSubmit={handleBook}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto"
+          >
+            <div className="col-span-1">
+              <label
+                htmlFor="firstName"
+                className="block text-gray-700 font-medium mb-2"
+              >
+                First Name
+              </label>
+              <input
+                id="firstName"
+                type="text"
+                required
+                className="w-full px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:outline-none transition-all"
+                placeholder="Enter first name"
+              />
+            </div>
+            <div className="col-span-1">
+              <label
+                htmlFor="lastName"
+                className="block text-gray-700 font-medium mb-2"
+              >
+                Last Name
+              </label>
+              <input
+                id="lastName"
+                type="text"
+                required
+                className="w-full px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:outline-none transition-all"
+                placeholder="Enter last name"
+              />
+            </div>
+            <div className="col-span-2">
+              <label
+                htmlFor="email"
+                className="block text-gray-700 font-medium mb-2"
+              >
+                Email Address
+              </label>
+              <input
+                id="email"
+                type="email"
+                required
+                className="w-full px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:outline-none transition-all"
+                placeholder="Enter your email"
+              />
+            </div>
+
+            <div className="col-span-2 flex justify-center mt-4">
+              <button
+                type="submit"
+                className="w-full sm:w-auto px-10 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-semibold shadow-xl hover:shadow-pink-500/50 transform hover:scale-105 transition-all"
+              >
+                Confirm Booking
+              </button>
+            </div>
+          </form>
+        </div>
+
+        {/* Related Services */}
+        <div
+          className="mt-28 text-center"
+          data-aos="fade-up"
+          data-aos-delay="700"
+        >
+          <h3 className="text-3xl font-bold text-gray-900 mb-4">
+            Related Services
+          </h3>
+          <p className="text-gray-600 mb-10">
+            You may also like these premium offerings for your feline friend:
+          </p>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {data
+              .filter((s) => s.serviceId !== service.serviceId)
+              .slice(0, 3)
+              .map((related, i) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-2xl shadow-lg overflow-hidden hover:-translate-y-2 transition-transform duration-300"
+                >
+                  <img
+                    src={related.image}
+                    alt={related.category}
+                    className="h-52 w-full object-cover"
+                  />
+                  <div className="p-6 text-left">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      {related.category}
+                    </h4>
+                    <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                      {related.description}
+                    </p>
+                    <span className="text-pink-600 font-semibold">
+                      ${related.price}
+                    </span>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
       </div>
-    </>
+    </section>
   );
 };
 
