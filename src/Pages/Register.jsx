@@ -31,7 +31,6 @@ const Register = () => {
       [name]: value,
     }));
 
-    // Check password strength when password changes
     if (name === "password") {
       checkPasswordStrength(value);
     }
@@ -148,7 +147,7 @@ const Register = () => {
     }
   };
 
-  // Check current password value for requirement indicators
+
   const currentPassword = formData.password;
   const hasUppercaseCheck = /[A-Z]/.test(currentPassword);
   const hasLowercaseCheck = /[a-z]/.test(currentPassword);

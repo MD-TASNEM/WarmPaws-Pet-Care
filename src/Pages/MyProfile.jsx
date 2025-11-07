@@ -29,24 +29,24 @@ const MyProfile = () => {
     return `${uid.substring(0, 8)}...${uid.substring(uid.length - 8)}`;
   };
 
-  // Function to generate avatar from email or name
+
   const getAvatarUrl = () => {
-    // If user has a photoURL, use it
+
     if (user.photoURL) {
       return user.photoURL;
     }
 
-    // If no photoURL, generate a Gravatar-like avatar using the email
+
     if (user.email) {
       const emailHash = user.email.trim().toLowerCase();
       return `https://www.gravatar.com/avatar/${emailHash}?s=128&d=identicon`;
     }
 
-    // Fallback to initials avatar
+
     return null;
   };
 
-  // Function to get user initials for fallback avatar
+
   const getUserInitials = () => {
     if (user.displayName) {
       return user.displayName
@@ -64,7 +64,7 @@ const MyProfile = () => {
     return "U";
   };
 
-  // Function to get avatar background color based on user ID or email
+
   const getAvatarBackgroundColor = () => {
     const seed = user.uid || user.email || "user";
     const colors = [
