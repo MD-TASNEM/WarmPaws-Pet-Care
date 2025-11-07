@@ -1,120 +1,4 @@
-// import React, { use } from "react";
-// import { AuthContext } from "../Context/AuthContext";
-// import { useNavigate } from "react-router";
-// import toast from "react-hot-toast";
-
-
-// const UpdateProfile = () => {
-//   const { user, setUser, loading, updateUser } = use(AuthContext);
-//   //console.log(user, loading,updateUser);
-//   const navigate = useNavigate();
-//   if (loading) {
-//     return <p>Loading......</p>;
-//   }
-//   const handleUpdate = (e) => {
-//     e.preventDefault();
-//     const userName=e.target.userName.value;
-
-//     const photo=e.target.photo.value;
-//     //console.log(userName,photo);
-//     updateUser({ displayName:userName,photoURL:photo})
-//     .then(()=>{
-//         setUser({...user,displayName:userName,photoURL:photo})
-//         toast.success('Succesfully Updated')
-//         e.target.reset()
-//     }).catch(()=>{
-//         setUser(user);
-//          toast.error(e.message);
-//     })
-
-//     // navigate("/");
-//   };
-//    const handleHome=()=>{
-//         navigate('/')
-//     }
-//   return (
-//     <div className="bg-gray-100 min-h-screen overflow-x-hidden">
-//       <div className=" sm:w-10/12 md:w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 py-10">
-//         <div className=" h-auto max-h-[500px] p-5 md:p-10 flex justify-center">
-//           <div className="rounded-2xl shadow-lg w-full max-w-sm relative bg-white">
-//             <div className="bg-blue-500 h-32 w-full rounded-t-lg"></div>
-
-//             <div className="absolute top-16 left-1/2 transform -translate-x-1/2 md:left-32 md:translate-x-0">
-//               <img
-//                 className="rounded-full w-24 h-24 md:w-28 md:h-28 border-4 border-white object-cover"
-//                 src={user.photoURL || ""}
-//                 alt={user.displayName || "User"}
-//               />
-//             </div>
-
-//             <div className="mt-20 text-center pb-6 px-5 md:px-0">
-//               <h2 className="text-xl md:text-2xl font-bold">
-//                 {user.displayName || "No Name"}
-//               </h2>
-//               <p className="mt-2 text-gray-500 text-sm">
-//                 <span className="font-semibold">Id: </span>
-//                 {user.uid}
-//               </p>
-//               <p className="text-gray-500 mt-1 text-sm">
-//                 <span className="font-semibold">Email: </span>
-//                 {user.email}
-//               </p>
-
-//               <button
-//                 onClick={handleHome}
-//                 className="btn btn-soft btn-accent mt-6 w-36 md:w-40"
-//               >
-//                 Home
-//               </button>
-//             </div>
-//           </div>
-//         </div>
-
-//         <div className="p-5 md:p-10 flex justify-center">
-//           <form onSubmit={handleUpdate} className="w-full max-w-md">
-//             <fieldset className="fieldset flex flex-col gap-4">
-//               <label className="label">Email:</label>
-//               <input
-//                 type="email"
-//                 name="email"  readOnly
-//                 className="input w-full sm:w-full sm:h-[50px] border-2 border-gray-400 focus:outline-none"
-//                 placeholder={user.email}
-//               />
-//               <label className="label">Name:</label>
-//               <input
-//                 type="text"
-//                 name="userName" required
-//                 className="input w-full sm:w-full sm:h-[50px] border-2 border-gray-400 focus:outline-none"
-//                 placeholder="Enter new name"
-//               />
-
-
-//               <label className="label">URL:</label>
-//               <input
-//                 type="text"
-//                 name="photo" required
-//                 className="input w-full sm:w-full sm:h-[50px] border-2 border-gray-400 focus:outline-none"
-//                 placeholder="Enter new photo"
-//               />
-
-//               <button className="btn btn-neutral mt-3 w-full sm:w-full relative group">
-//                 <span className="relative z-10 transition-colors duration-300 group-hover:text-black">
-//                   Update Profile
-//                 </span>
-//                 <span className="absolute bg-white w-0 h-full right-0 transition-all duration-300 group-hover:w-full group-hover:text-black"></span>
-//               </button>
-//             </fieldset>
-//           </form>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default UpdateProfile;
-
-
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
@@ -122,6 +6,21 @@ import toast from "react-hot-toast";
 const UpdateProfile = () => {
   const { user, setUser, loading, updateUser } = React.useContext(AuthContext);
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    userName: "",
+    photo: ""
+  });
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  // Initialize form data when user data is available
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        userName: user.displayName || "",
+        photo: user.photoURL || ""
+      });
+    }
+  }, [user]);
 
   if (loading) {
     return (
@@ -134,11 +33,19 @@ const UpdateProfile = () => {
     );
   }
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   const handleUpdate = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const userName = formData.get("userName");
-    const photo = formData.get("photo");
+    setIsUpdating(true);
+
+    const { userName, photo } = formData;
 
     try {
       await updateUser({ displayName: userName, photoURL: photo });
@@ -154,8 +61,8 @@ const UpdateProfile = () => {
           fontWeight: '500',
         },
       });
-      e.target.reset();
     } catch (error) {
+      console.error('Update error:', error);
       setUser(user);
       toast.error('Failed to update profile. Please try again.', {
         duration: 4000,
@@ -168,6 +75,8 @@ const UpdateProfile = () => {
           fontWeight: '500',
         },
       });
+    } finally {
+      setIsUpdating(false);
     }
   };
 
@@ -177,6 +86,13 @@ const UpdateProfile = () => {
 
   const handleCancel = () => {
     navigate('/profile');
+  };
+
+  const handleReset = () => {
+    setFormData({
+      userName: user.displayName || "",
+      photo: user.photoURL || ""
+    });
   };
 
   return (
@@ -210,11 +126,11 @@ const UpdateProfile = () => {
                 <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2">
                   <div className="relative">
                     <div className="w-24 h-24 rounded-2xl border-4 border-white shadow-lg bg-white p-1">
-                      {user.photoURL ? (
+                      {(user.photoURL || formData.photo) ? (
                         <img
                           className="w-full h-full rounded-xl object-cover"
-                          src={user.photoURL}
-                          alt={user.displayName || "User"}
+                          src={formData.photo || user.photoURL}
+                          alt={formData.userName || user.displayName || "User"}
                           onError={(e) => {
                             e.target.style.display = 'none';
                             e.target.nextSibling.style.display = 'flex';
@@ -222,10 +138,10 @@ const UpdateProfile = () => {
                         />
                       ) : null}
                       <div
-                        className={`w-full h-full rounded-xl bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center ${user.photoURL ? 'hidden' : 'flex'}`}
+                        className={`w-full h-full rounded-xl bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center ${(user.photoURL || formData.photo) ? 'hidden' : 'flex'}`}
                       >
                         <span className="text-2xl font-bold text-gray-600">
-                          {user.displayName ? user.displayName.charAt(0).toUpperCase() : 'U'}
+                          {(formData.userName || user.displayName) ? (formData.userName || user.displayName).charAt(0).toUpperCase() : 'U'}
                         </span>
                       </div>
                     </div>
@@ -236,9 +152,11 @@ const UpdateProfile = () => {
               {/* Current Profile Info */}
               <div className="pt-16 pb-8 px-6 text-center">
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                  {user.displayName || "No Name Provided"}
+                  {formData.userName || user.displayName || "No Name Provided"}
                 </h2>
-                <p className="text-gray-500 text-sm mb-6">Current Profile</p>
+                <p className="text-gray-500 text-sm mb-6">
+                  {formData.userName !== user.displayName ? "Preview" : "Current Profile"}
+                </p>
 
                 <div className="space-y-3 text-left bg-gray-50 rounded-xl p-4">
                   <div className="flex justify-between items-center">
@@ -252,9 +170,9 @@ const UpdateProfile = () => {
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium text-gray-500">Last Updated:</span>
+                    <span className="text-sm font-medium text-gray-500">Status:</span>
                     <span className="text-sm text-gray-900">
-                      {new Date().toLocaleDateString()}
+                      {formData.userName !== user.displayName || formData.photo !== user.photoURL ? "Unsaved changes" : "Up to date"}
                     </span>
                   </div>
                 </div>
@@ -274,7 +192,6 @@ const UpdateProfile = () => {
                   <div className="relative">
                     <input
                       type="email"
-                      name="email"
                       readOnly
                       className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 cursor-not-allowed"
                       value={user.email}
@@ -299,9 +216,10 @@ const UpdateProfile = () => {
                       type="text"
                       name="userName"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      value={formData.userName}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
                       placeholder="Enter your full name"
-                      defaultValue={user.displayName || ''}
                     />
                     <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
                       <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -322,9 +240,10 @@ const UpdateProfile = () => {
                       type="url"
                       name="photo"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      value={formData.photo}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
                       placeholder="https://example.com/photo.jpg"
-                      defaultValue={user.photoURL || ''}
                     />
                     <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
                       <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -335,20 +254,51 @@ const UpdateProfile = () => {
                   <p className="text-xs text-gray-500 mt-1">Enter a valid image URL</p>
                 </div>
 
+                {/* Change Indicators */}
+                {(formData.userName !== user.displayName || formData.photo !== user.photoURL) && (
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4">
+                    <div className="flex items-start space-x-3">
+                      <svg className="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                      </svg>
+                      <div>
+                        <p className="text-sm text-yellow-800 font-medium">Unsaved changes</p>
+                        <p className="text-xs text-yellow-700 mt-1">You have made changes to your profile that haven't been saved yet.</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {/* Action Buttons */}
-                <div className="flex space-x-4 pt-4">
+                <div className="flex space-x-3 pt-4">
                   <button
                     type="button"
                     onClick={handleCancel}
-                    className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition-all duration-200 transform hover:scale-105 active:scale-95"
+                    className="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition-all duration-200"
                   >
                     Cancel
                   </button>
                   <button
-                    type="submit"
-                    className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
+                    type="button"
+                    onClick={handleReset}
+                    disabled={formData.userName === user.displayName && formData.photo === user.photoURL}
+                    className="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                   >
-                    Update Profile
+                    Reset
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isUpdating || (formData.userName === user.displayName && formData.photo === user.photoURL)}
+                    className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-medium hover:from-blue-600 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg"
+                  >
+                    {isUpdating ? (
+                      <div className="flex items-center justify-center space-x-2">
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        <span>Updating...</span>
+                      </div>
+                    ) : (
+                      "Update"
+                    )}
                   </button>
                 </div>
 
