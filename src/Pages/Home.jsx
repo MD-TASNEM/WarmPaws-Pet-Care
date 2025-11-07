@@ -46,14 +46,13 @@ const Home = () => {
           <div className="py-4" data-aos="fade-down">
             <Marquee gradient={false} speed={50}>
               <span className="text-sm md:text-base font-medium text-purple-800">
-                📰 Welcome to Pretty Kitty — Order by 11AM for next-day delivery (Sun-Wed) 🐾
+                📰 Welcome to Pretty Kitty — Order by 11AM for next-day delivery
+                (Sun-Wed) 🐾
               </span>
             </Marquee>
           </div>
         </div>
       </div>
-
-
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-purple-50 via-pink-50 to-white py-16">
@@ -62,8 +61,8 @@ const Home = () => {
             Keep Your Cat Cozy This Winter
           </h1>
           <p className="mt-6 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Professional winter care, premium grooming, and personalized pampering services
-            tailored for your feline companion.
+            Professional winter care, premium grooming, and personalized
+            pampering services tailored for your feline companion.
           </p>
         </div>
       </section>
@@ -95,7 +94,9 @@ const Home = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                   <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-center">
-                    <span className={`${slide.color} text-white px-8 py-4 rounded-full text-2xl md:text-4xl font-bold shadow-lg`}>
+                    <span
+                      className={`${slide.color} text-white px-8 py-4 rounded-full text-2xl md:text-4xl font-bold shadow-lg`}
+                    >
                       {slide.title}
                     </span>
                   </div>
@@ -110,8 +111,12 @@ const Home = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12" data-aos="fade-up">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800">Our Premium Services</h2>
-            <p className="mt-4 text-lg text-gray-600">Tailored care for every stage of your cat's life</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800">
+              Our Premium Services
+            </h2>
+            <p className="mt-4 text-lg text-gray-600">
+              Tailored care for every stage of your cat's life
+            </p>
           </div>
 
           <div
@@ -137,15 +142,22 @@ const Home = () => {
       </section>
 
       {/* Winter Care Tips */}
-      <section id="WinterCare" className="py-20 bg-gradient-to-br from-white to-blue-50">
+      <section
+        id="WinterCare"
+        className="py-20 bg-gradient-to-br from-white to-blue-50"
+      >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-4 mb-12" data-aos="fade-right">
-            <div className="text-4xl bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl p-4 text-white">⛄</div>
+            <div className="text-4xl bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl p-4 text-white">
+              ⛄
+            </div>
             <div>
               <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
                 Winter Care Tips
               </h2>
-              <p className="text-gray-600 mt-2">Keep your feline friend warm and cozy this season</p>
+              <p className="text-gray-600 mt-2">
+                Keep your feline friend warm and cozy this season
+              </p>
             </div>
           </div>
 
@@ -153,39 +165,45 @@ const Home = () => {
             {[
               {
                 title: "Keep Them Warm",
-                content: "Provide heated beds and cozy blankets away from cold drafts and floors.",
+                content:
+                  "Provide heated beds and cozy blankets away from cold drafts and floors.",
                 icon: "🔥",
-                color: "from-orange-500 to-red-500"
+                color: "from-orange-500 to-red-500",
               },
               {
                 title: "Limit Outdoor Time",
-                content: "Reduce exposure to cold, wet conditions during winter months.",
+                content:
+                  "Reduce exposure to cold, wet conditions during winter months.",
                 icon: "🏠",
-                color: "from-blue-500 to-cyan-500"
+                color: "from-blue-500 to-cyan-500",
               },
               {
                 title: "Boost Nutrition",
-                content: "Increase calorie intake to maintain body heat and energy levels.",
+                content:
+                  "Increase calorie intake to maintain body heat and energy levels.",
                 icon: "🍲",
-                color: "from-green-500 to-emerald-500"
+                color: "from-green-500 to-emerald-500",
               },
               {
                 title: "Safe Heating",
-                content: "Never let cats sleep directly on heaters to prevent burns.",
+                content:
+                  "Never let cats sleep directly on heaters to prevent burns.",
                 icon: "⚠️",
-                color: "from-yellow-500 to-amber-500"
+                color: "from-yellow-500 to-amber-500",
               },
               {
                 title: "Regular Grooming",
-                content: "Brushing helps maintain insulating fur coat and prevents matting.",
+                content:
+                  "Brushing helps maintain insulating fur coat and prevents matting.",
                 icon: "✨",
-                color: "from-pink-500 to-rose-500"
+                color: "from-pink-500 to-rose-500",
               },
               {
                 title: "Hydration Check",
-                content: "Ensure fresh water is always available, as indoor heating can cause dehydration.",
+                content:
+                  "Ensure fresh water is always available, as indoor heating can cause dehydration.",
                 icon: "💧",
-                color: "from-purple-500 to-violet-500"
+                color: "from-purple-500 to-violet-500",
               },
             ].map((tip, i) => (
               <div
@@ -194,15 +212,23 @@ const Home = () => {
                 data-aos="fade-up"
                 data-aos-delay={i * 100}
               >
-                <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${tip.color}`}></div>
+                <div
+                  className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${tip.color}`}
+                ></div>
                 <div className="p-5">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className={`text-2xl bg-gradient-to-r ${tip.color} rounded-lg p-2 text-white`}>
+                    <div
+                      className={`text-2xl bg-gradient-to-r ${tip.color} rounded-lg p-2 text-white`}
+                    >
                       {tip.icon}
                     </div>
-                    <h3 className="text-lg font-bold text-gray-800">{tip.title}</h3>
+                    <h3 className="text-lg font-bold text-gray-800">
+                      {tip.title}
+                    </h3>
                   </div>
-                  <p className="text-gray-600 text-sm leading-relaxed">{tip.content}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {tip.content}
+                  </p>
                 </div>
               </div>
             ))}
@@ -215,17 +241,43 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-12" data-aos="fade-left">
             <div className="text-4xl text-purple-600">🩺</div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Meet Our Expert Vets</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+              Meet Our Expert Vets
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {[
-              { name: "Prof. Kundu", title: "Assistant Professor", img: "https://i.ibb.co.com/GY15G6Z/Af.webp" },
-              { name: "Dr. Das", title: "Senior Veterinarian", img: "https://i.ibb.co.com/JwGsNX9Q/vec2.jpg" },
-              { name: "Dr. Khan", title: "Veterinary Surgeon", img: "https://i.ibb.co.com/Kpmx8mJs/Ex.jpg" },
-              { name: "Dr. Bose", title: "Lead Surgeon", img: "https://i.ibb.co.com/gLdKdRnc/Ex-2.jpg" },
-              { name: "Dr. Karim", title: "Consultant", img: "https://i.ibb.co.com/0y5mD0qZ/Sc.jpg" },
-              { name: "Dr. Khatul", title: "Surgical Specialist", img: "https://i.ibb.co.com/JR2F0HRQ/Si.jpg" },
+              {
+                name: "Prof. Kundu",
+                title: "Assistant Professor",
+                img: "https://i.ibb.co.com/GY15G6Z/Af.webp",
+              },
+              {
+                name: "Dr. Das",
+                title: "Senior Veterinarian",
+                img: "https://i.ibb.co.com/JwGsNX9Q/vec2.jpg",
+              },
+              {
+                name: "Dr. Khan",
+                title: "Veterinary Surgeon",
+                img: "https://i.ibb.co.com/Kpmx8mJs/Ex.jpg",
+              },
+              {
+                name: "Dr. Bose",
+                title: "Lead Surgeon",
+                img: "https://i.ibb.co.com/gLdKdRnc/Ex-2.jpg",
+              },
+              {
+                name: "Dr. Karim",
+                title: "Consultant",
+                img: "https://i.ibb.co.com/0y5mD0qZ/Sc.jpg",
+              },
+              {
+                name: "Dr. Khatul",
+                title: "Surgical Specialist",
+                img: "https://i.ibb.co.com/JR2F0HRQ/Si.jpg",
+              },
             ].map((vet, i) => (
               <div
                 key={i}
@@ -235,9 +287,15 @@ const Home = () => {
               >
                 <div className="p-8 text-center">
                   <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-purple-200 group-hover:border-purple-400 transition-all">
-                    <img src={vet.img} alt={vet.name} className="w-full h-full object-cover" />
+                    <img
+                      src={vet.img}
+                      alt={vet.name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-800">{vet.name}</h3>
+                  <h3 className="text-2xl font-bold text-gray-800">
+                    {vet.name}
+                  </h3>
                   <p className="text-purple-600 font-medium">{vet.title}</p>
                   <p className="mt-4 text-gray-600 text-sm leading-relaxed">
                     {i === 0
@@ -257,7 +315,10 @@ const Home = () => {
       {/* Testimonials */}
       <section className="py-20 bg-gradient-to-br from-purple-900 to-pink-800 text-white">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16" data-aos="fade-up">
+          <h2
+            className="text-4xl md:text-5xl font-bold text-center mb-16"
+            data-aos="fade-up"
+          >
             Loved by Pet Parents Everywhere
           </h2>
 
@@ -278,7 +339,8 @@ const Home = () => {
                     Caring For Your Pets Like Family
                   </h3>
                   <p className="text-xl opacity-90">
-                    Trusted veterinary care and professional grooming since 2018.
+                    Trusted veterinary care and professional grooming since
+                    2018.
                   </p>
                 </div>
               </div>
@@ -286,13 +348,35 @@ const Home = () => {
 
             <div className="space-y-8" data-aos="fade-left">
               {[
-                { name: "Mrinal Sen", role: "Luna's Mom", img: user1, text: "They saved my cat's life during an emergency. Compassionate and highly skilled!" },
-                { name: "Nirmol Chowdhury", role: "Whiskers' Dad", img: user2, text: "Best grooming service in town. My Persian looks like a show cat every time!" },
-                { name: "Sabrina Gardener", role: "Simba's Human", img: user3, text: "From kitten vaccines to senior care — they've been with us every step." },
+                {
+                  name: "Mrinal Sen",
+                  role: "Luna's Mom",
+                  img: user1,
+                  text: "They saved my cat's life during an emergency. Compassionate and highly skilled!",
+                },
+                {
+                  name: "Nirmol Chowdhury",
+                  role: "Whiskers' Dad",
+                  img: user2,
+                  text: "Best grooming service in town. My Persian looks like a show cat every time!",
+                },
+                {
+                  name: "Sabrina Gardener",
+                  role: "Simba's Human",
+                  img: user3,
+                  text: "From kitten vaccines to senior care — they've been with us every step.",
+                },
               ].map((review, i) => (
-                <div key={i} className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                <div
+                  key={i}
+                  className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
+                >
                   <div className="flex items-start gap-4">
-                    <img src={review.img} alt={review.name} className="w-16 h-16 rounded-full object-cover border-2 border-white" />
+                    <img
+                      src={review.img}
+                      alt={review.name}
+                      className="w-16 h-16 rounded-full object-cover border-2 border-white"
+                    />
                     <div className="flex-1">
                       <div className="flex justify-between items-start">
                         <div>
@@ -301,7 +385,9 @@ const Home = () => {
                         </div>
                         <div className="text-3xl">⭐⭐⭐⭐⭐</div>
                       </div>
-                      <p className="mt-3 text-gray-100 italic">"{review.text}"</p>
+                      <p className="mt-3 text-gray-100 italic">
+                        "{review.text}"
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -314,8 +400,12 @@ const Home = () => {
       {/* CTA Footer */}
       <section className="bg-gradient-to-r from-purple-600 to-pink-600 py-16">
         <div className="max-w-7xl mx-auto px-4 text-center text-white">
-          <h2 className="text-4xl md:text-5xl4xl font-bold mb-6">Ready to Pamper Your Kitty?</h2>
-          <p className="text-xl mb-10 opacity-90">Book an appointment or shop premium products today.</p>
+          <h2 className="text-4xl md:text-5xl4xl font-bold mb-6">
+            Ready to Pamper Your Kitty?
+          </h2>
+          <p className="text-xl mb-10 opacity-90">
+            Book an appointment or shop premium products today.
+          </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <NavLink to="/">
               <button className="btn btn-lg bg-white text-purple-700 hover:bg-gray-100 font-bold">
