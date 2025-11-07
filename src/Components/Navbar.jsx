@@ -6,7 +6,7 @@ import { AuthContext } from "../Context/AuthContext";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
-  //console.log(user);
+  
   const navigate = useNavigate();
   const handleSignOut = () => {
     logOut()
@@ -26,7 +26,7 @@ const Navbar = () => {
 
       <div className="drawer-content">
         <nav className="bg-black text-white flex justify-between items-center p-3 md:px-10">
- 
+
           <div>
             <NavLink
               to="/"
@@ -40,11 +40,11 @@ const Navbar = () => {
               <h2 className="text-sm sm:text-base font-semibold">
                 WarmPaws
               </h2>
-             
+
             </NavLink>
           </div>
 
-      
+
           <div className="hidden md:flex justify-center items-center gap-8">
             <NavLink
               to="/"
@@ -97,7 +97,7 @@ const Navbar = () => {
             </NavLink>
           </div>
 
-      
+
           <label
             htmlFor="nav-drawer"
             className="btn btn-ghost text-white drawer-button md:hidden"
@@ -120,7 +120,7 @@ const Navbar = () => {
             </label>
           </div>
 
-       
+
           <li>
             <NavLink to="/" className="text-lg font-medium">
               Home
@@ -162,7 +162,7 @@ const Navbar = () => {
                 </button>
               )}
             </NavLink>
-          </li> 
+          </li>
         </ul>
       </div>
     </div>

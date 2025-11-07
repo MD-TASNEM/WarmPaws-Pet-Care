@@ -5,14 +5,14 @@ import { Navigate, NavLink, useNavigate } from "react-router";
 const MyProfile = () => {
   const { user, loading } = use(AuthContext);
   // console.log(user, loading);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   if (loading) {
     return <p>Loading......</p>;
   }
-  const handleUpdate=()=>{
+  const handleUpdate = () => {
     //<NavLink to='/updateprofile'></NavLink>
-    navigate('/updateprofile')
-  }
+    navigate("/updateprofile");
+  };
   return (
     <div className="flex justify-center items-center min-h-screen bg-[#e5e7eb] p-4">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-sm relative">
@@ -30,12 +30,21 @@ const MyProfile = () => {
           <h2 className="mt-16 text-xl font-bold">
             {user.displayName || "No Name"}
           </h2>
-          <p className="mt-4 text-gray-500"><span className="font-semibold text-sm">Id : </span>{user.uid
-}</p>
-          <p className="text-gray-500 mt-2"><span className="font-semibold text-sm">Email:</span>{user.email}</p>
+          <p className="mt-4 text-gray-500">
+            <span className="font-semibold text-sm">Id : </span>
+            {user.uid}
+          </p>
+          <p className="text-gray-500 mt-2">
+            <span className="font-semibold text-sm">Email:</span>
+            {user.email}
+          </p>
 
-       
-          <button onClick={handleUpdate} className="btn btn-soft btn-accent mt-6">Update Profile</button>
+          <button
+            onClick={handleUpdate}
+            className="btn btn-soft btn-accent mt-6"
+          >
+            Update Profile
+          </button>
         </div>
       </div>
     </div>
